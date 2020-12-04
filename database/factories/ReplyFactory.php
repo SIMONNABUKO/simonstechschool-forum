@@ -22,7 +22,13 @@ class ReplyFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'body'=>$this->faker->text,
+            'user_id'=> function(){
+                return \App\Models\User::all()->random();
+            },
+            'question_id'=>function(){
+                return \App\Models\Question::all()->random();
+            }
         ];
     }
 }
