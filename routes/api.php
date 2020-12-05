@@ -17,3 +17,12 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+// | POST      | api/questions                  | questions.store                 | App\Http\Controllers\QuestionController@store 
+// | GET|HEAD  | api/questions                  | questions.index                 | App\Http\Controllers\QuestionController@index 
+// | DELETE    | api/questions/{question}       | questions.destroy               | App\Http\Controllers\QuestionController@destroy
+// | PUT|PATCH | api/questions/{question}       | questions.update                | App\Http\Controllers\QuestionController@update  
+// | GET|HEAD  | api/questions/{question}       | questions.show                  | App\Http\Controllers\QuestionController@show  
+
+Route::apiResource('questions', 'App\Http\Controllers\QuestionController');

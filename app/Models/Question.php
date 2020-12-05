@@ -4,26 +4,32 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\User;
-use App\Models\Reply;
-use App\Models\Category;
 
 
 class Question extends Model
 {
+    public function getRouteKeyName(){
+        return 'slug';
+    }
     use HasFactory;
 
-    protected $fillable = ['title','body','slug', 'user_id', 'category_id'];
+   // protected $fillable = ['title','body','slug', 'user_id', 'category_id'];
+
+    protected $guarded =[];
 
     public function user(){
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function category(){
-        return $this->belongsTo('Category');
+        return $this->belongsTo('App\Models\Category');
     }
 
     public function replies(){
-        return $this->hasMany('Reply');
+        return $this->hasMany('App\Models\Reply');
+    }
+
+    public function getPathAttribute(){
+        return asset("api/question/$this->slug");
     }
 }
