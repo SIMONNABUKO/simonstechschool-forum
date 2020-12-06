@@ -11,6 +11,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function user(){
         return $this->belongsTo('User');
     }
@@ -18,4 +20,6 @@ class Category extends Model
     public function questions(){
         return $this->hasMany('Question');
     }
+
+
 }

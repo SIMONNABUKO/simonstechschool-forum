@@ -11,6 +11,7 @@ class Reply extends Model
 {
     use HasFactory;
     protected $fillable = ['body', 'question_id', 'user_id'];
+    
 
     public function likes(){
         return $this->hasMany('App\Models\Like');

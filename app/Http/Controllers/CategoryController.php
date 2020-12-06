@@ -14,18 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return Category::all();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+   
 
     /**
      * Store a newly created resource in storage.
@@ -35,7 +27,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       Category::create($request->all());
+
+       $message = [
+        'status'=> 'success',
+        'message'=> 'category created successfully!'
+    ];
+
+    return response()->json($message, 201);
     }
 
     /**
@@ -46,19 +45,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        //
+        return $category;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
+    
 
     /**
      * Update the specified resource in storage.
@@ -69,7 +59,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $category->update($request->all());
+
+       $message = [
+        'status'=> 'success',
+        'message'=> 'category updated successfully!'
+    ];
+
+    return response()->json($message, 200);
     }
 
     /**
@@ -80,6 +77,14 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+
+        $message = [
+            'status'=> 'success',
+            'message'=> 'category deleted successfully!'
+        ];
+    
+        return response()->json($message, 200);
+
     }
 }

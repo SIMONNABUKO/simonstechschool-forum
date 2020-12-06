@@ -70,7 +70,15 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        //
+        $question->update($request->all());
+
+        
+        $message = [
+            'status'=> 'success',
+            'message'=> 'question updated successfully!'
+        ];
+
+        return response()->json($message, 200);
     }
 
     /**
